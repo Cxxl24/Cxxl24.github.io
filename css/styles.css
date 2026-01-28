@@ -1,3 +1,13 @@
+:root {
+	--bg: #0f172a;
+	--bg-light: #111827;
+	--text: #e5e7eb;
+	--accent: #38bdf8;
+	--card: #1e293b;
+}
+
+
+
 * {
 	margin: 0;
 	padding: 0;
@@ -5,18 +15,32 @@
 }
 
 body {
-	font-family: Arial, Helvetica, sans-serif;
-	line-height: 1.6;
-	background-color: #f4f4f4;
-	color: #333
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	background-color: var(--bg);
+	color: var(--text);
+	line-height: 1.7;
+}
+
+.section {
+	padding: 6rem 1.5rem;
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
 }
 
 .navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	background-color: rgba(15, 23, 42, 0.9);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
 	padding: 1rem 2rem;
-	background-color: #222
 }
 
 .logo {
@@ -42,15 +66,90 @@ body {
 }
 
 .hero {
-	height: 100vh;
-	background: linear-gradient(to right, #00adb5, #393e46);
-	color: white;
-
+	min-height: 100vh;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	text-align: center;
+}
+
+.hero h2 {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.btn {
+	margin-top: 2rem;
+	padding: 0.75rem 1.5rem;
+	border-radius: 6px;
+	border: none;
+	background-color: var(--accent);
+	color: black;
+	font-weight: bold;	
+	cursor: pointer;
+}
+
+.btn:hover {
+	opacity: 0.9;
+}
+
+.card {
+	background-color: var(--card);
+	padding: 1.5rem;
+	border-radius: 10px;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.skills-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+.projects-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero p {
+	color: var(--muted);
+	max-width: 600px;
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.slide-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 section {
