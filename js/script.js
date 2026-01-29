@@ -1,27 +1,49 @@
-document.getElementById("contact-btn").addEventListener("click", () => {
-	document.getElementById("contact").scrollIntoView({
-	behavior: "smooth"
+// Page Navigation
+const navLinks = document.querySelectorAll('.nav-links a');
+const pages = document.querySelectorAll('.page');
+const menuToggle = document.getElementById('menu-toggle');
+const navLinksMenu = document.getElementById('nav-links');
+
+function hidAllPages() {
+	pages.forEach(page => page.classList.remove('active'));
+}
+
+function showPage(pageId) {
+	hidAllPages();
+	const page = document.getElementById(pageId);
+	if (page) {
+		page.classList.add('active');
+	}
+}
+
+// Navigation link click handling
+navLinks.forEach(link => {
+	link.addEventListener('click', (e) => {
+		e.preventDefault();
+		const pageId = link.getAttribute('data-page');
+		showPage(pageId);
+		
+		// Close mobile menu when a link is clicked
+		navLinksMenu.classList.remove('active');
+		menuToggle.textContent = '☰';
 	});
 });
 
-window.addEventListener("scroll", () => {
-	const navbar = document.querySelector(".navbar");
-
-	if (window.scrollY > 50) {
-		navbar.style.backgroundColor = "#000";
+// Hamburger menu toggle
+menuToggle.addEventListener('click', () => {
+	navLinksMenu.classList.toggle('active');
+	
+	if (navLinksMenu.classList.contains('active')) {
+		menuToggle.textContent = '✕';
 	} else {
-		navbar.style.backgroundColor = "#222";
+		menuToggle.textContent = '☰';
 	}
 });
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        }
-    });
+// Contact button - navigate to contact page
+document.getElementById('contact-btn').addEventListener('click', () => {
+	showPage('contact');
 });
 
-document.querySelectorAll(".slide-in").forEach(el => {
-    observer.observe(el);
-});
+// Initialize - show home page
+showPage('home');
