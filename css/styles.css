@@ -65,7 +65,7 @@ header {
 	font-weight: 600;
 }
 
-.nav-links a:hover {
+.nav-links a.active {
 	color: var(--accent);
 }
 
@@ -88,16 +88,12 @@ header {
 }
 
 .page {
-	display: none;
 	width: 100%;
 	min-height: calc(100vh - var(--header-height));
 	padding: 4rem 2rem;
 	animation: fadeIn 0.5s ease-in-out;
 	justify-content: center;
 	align-items: center;
-}
-
-.page.active {
 	display: flex;
 }
 
@@ -107,7 +103,6 @@ header {
 	padding: 2rem;
 	text-align: left;
 }
-
 .page-content.hero {
 	text-align: center;
 }
